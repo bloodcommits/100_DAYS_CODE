@@ -1,0 +1,22 @@
+
+//https://leetcode.com/problems/valid-anagram/submissions/912809334/?envType=study-plan&id=data-structure-i
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.size()!=t.size()) return false;
+        map<char,int>mp;
+        for(int i:s) mp[i]++;
+        for(auto x:mp) cout<<x.first<<" "<<x.second<<endl;
+        for(int i=0;i<t.size();i++){
+            cout<<t[i]<<" "<<mp[t[i]]<<endl;
+            if(mp.find(t[i])!=mp.end() && mp[t[i]]>0){
+                mp[t[i]]--;
+                continue;
+            }
+            else if(mp.find(mp[t[i]])!=mp.end() && mp[t[i]]==0) return false;
+            else if(mp.find(mp[t[i]])==mp.end()) return false;
+        }
+        return true;
+    }
+};
